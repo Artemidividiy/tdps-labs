@@ -78,8 +78,14 @@ build CMakeFiles/labs.dir/main.cpp.o: CXX_COMPILER__labs_Debug /Users/Rober/CLio
   OBJECT_DIR = CMakeFiles/labs.dir
   OBJECT_FILE_DIR = CMakeFiles/labs.dir
 
-build CMakeFiles/labs.dir/lab1/lab1.cpp.o: CXX_COMPILER__labs_Debug /Users/Rober/CLionProjects/labs/lab1/lab1.cpp || cmake_object_order_depends_target_labs
-  DEP_FILE = CMakeFiles/labs.dir/lab1/lab1.cpp.o.d
+build CMakeFiles/labs.dir/lab1/Table.cpp.o: CXX_COMPILER__labs_Debug /Users/Rober/CLionProjects/labs/lab1/Table.cpp || cmake_object_order_depends_target_labs
+  DEP_FILE = CMakeFiles/labs.dir/lab1/Table.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -std=gnu++2a
+  OBJECT_DIR = CMakeFiles/labs.dir
+  OBJECT_FILE_DIR = CMakeFiles/labs.dir/lab1
+
+build CMakeFiles/labs.dir/lab1/Element.cpp.o: CXX_COMPILER__labs_Debug /Users/Rober/CLionProjects/labs/lab1/Element.cpp || cmake_object_order_depends_target_labs
+  DEP_FILE = CMakeFiles/labs.dir/lab1/Element.cpp.o.d
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -std=gnu++2a
   OBJECT_DIR = CMakeFiles/labs.dir
   OBJECT_FILE_DIR = CMakeFiles/labs.dir/lab1
@@ -92,7 +98,7 @@ build CMakeFiles/labs.dir/lab1/lab1.cpp.o: CXX_COMPILER__labs_Debug /Users/Rober
 #############################################
 # Link the executable labs
 
-build labs: CXX_EXECUTABLE_LINKER__labs_Debug CMakeFiles/labs.dir/main.cpp.o CMakeFiles/labs.dir/lab1/lab1.cpp.o
+build labs: CXX_EXECUTABLE_LINKER__labs_Debug CMakeFiles/labs.dir/main.cpp.o CMakeFiles/labs.dir/lab1/Table.cpp.o CMakeFiles/labs.dir/lab1/Element.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk
   OBJECT_DIR = CMakeFiles/labs.dir
   POST_BUILD = :
