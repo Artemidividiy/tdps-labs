@@ -39,26 +39,30 @@ void Drawer::fill() {
 void Drawer::circle(const int& k) {
     for (int i = 0+k; i < width-k; i++){
         if (picture[heigth-heigth+k][i] == 0)
-            picture[heigth-heigth+k][i] = nums;
-        nums++;
+            if(cur_value > 99) cur_value = 10;
+            picture[heigth-heigth+k][i] = cur_value;
+        cur_value++;
     }
-    nums--;
+    cur_value--;
     for (int i = 0+k; i < heigth-k; i++){
         if (picture[i][width-1-k] == 0)
-            picture[i][width-1-k] = nums;
-        nums++;
+            if(cur_value > 99) cur_value = 10;
+            picture[i][width-1-k] = cur_value;
+        cur_value++;
     }
-    nums--;
+    cur_value--;
     for (int i = width-p; i >= 0+k; i--){
         if (picture[heigth-1-k][i]==0)
-            picture[heigth-1-k][i] = nums;
-        nums++;
+            if(cur_value > 99) cur_value = 10;
+            picture[heigth-1-k][i] = cur_value;
+        cur_value++;
     }
-    nums--;
+    cur_value--;
     for (int i = heigth-p; i > 0+k; i--){
         if (picture[i][0+k] == 0)
-            picture[i][0+k] = nums;
-        nums++;
+            if(cur_value > 99) cur_value = 10;
+            picture[i][0+k] = cur_value;
+        cur_value++;
     }
     p++;
 }

@@ -31,7 +31,7 @@ int main() {
 //    table->sort();
 
 //    lab2
-    Drawer drawer = Drawer(5, 6);
+    Drawer drawer = Drawer(10, 10);
     drawer.draw();
     return 0;
 }

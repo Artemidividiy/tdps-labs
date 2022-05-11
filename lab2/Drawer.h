@@ -13,7 +13,7 @@ private:
     std::vector<std::vector<int>> picture;
     int width, heigth;
     void fill();
-    int nums = 1;
+    int cur_value = 10;
     int p = 1;
 public:
     Drawer(const int &width, const int &height);
