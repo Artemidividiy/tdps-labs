@@ -3,6 +3,8 @@
 #include "lab1/Table.h"
 #include "lab2/Drawer.h"
 
+// main.cpp
+// Created by Артемий Касьяник on 10.04.2022.
 int main() {
     //lab1
     /*
