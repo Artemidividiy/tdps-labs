@@ -2,6 +2,7 @@
 #include "lab1/Element.h"
 #include "lab1/Table.h"
 #include "lab2/Drawer.h"
+#include "lab3/Solution.h"
 
 #include "time.h"
 
@@ -35,13 +36,13 @@ int main() {
 //    table->sort();
 
 //    lab2
-    clock_t start = clock();
-    Drawer drawer1 = Drawer(10000, 10000);
-    drawer1.draw();
-    clock_t stop = clock();
-    double elapsed = (double) (stop - start) / CLOCKS_PER_SEC;
-    printf("\n");
-    printf("Time elapsed: %f\n", elapsed);
+//    clock_t start = clock();
+//    Drawer drawer1 = Drawer(10000, 10000);
+//    drawer1.draw();
+//    clock_t stop = clock();
+//    double elapsed = (double) (stop - start) / CLOCKS_PER_SEC;
+//    printf("\n");
+//    printf("Time elapsed: %f\n", elapsed);
 //    Drawer drawer2 = Drawer(5, 6);
 //    drawer2.draw();
 //    printf("\n");
@@ -54,5 +55,8 @@ int main() {
 //    Drawer drawer5 = Drawer(8, 8);
 //    drawer5.draw();
 //    printf("\n");
+//    lab3
+    Solution solution = Solution();
+    std::cout << (solution.obey() ? "True" : "False");
     return 0;
 }

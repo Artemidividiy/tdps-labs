@@ -5,7 +5,6 @@
 
 #include "Drawer.h"
 #include <iostream>
-#include <vector>
 
 Drawer::Drawer(const int &width, const int &height) : width(width), heigth(height){
     picture.resize(height);
