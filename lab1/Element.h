@@ -8,12 +8,15 @@
 
 #include <string>
 
+
+
 class Element {
 private:
     int group_code;
     std::string name;
     std::string birth_date;
 public:
+    static Element MAX_SIZE();
     Element();
     Element(std::string name, std::string birth_date, int group_code);
     ~Element();
@@ -24,7 +27,13 @@ public:
     std::string get_birth_date();
     void set_birth_date(std::string value);
     std::string to_string();
-    bool operator ==(Element& element);
+    bool operator==(Element other) const;
+    bool operator==(Element* other) const;
+
+//    template<class T>
+//            bool operator==(T other) const;
+    bool operator <(Element other) const;
+    bool operator >(Element other) const;
 };
 
 

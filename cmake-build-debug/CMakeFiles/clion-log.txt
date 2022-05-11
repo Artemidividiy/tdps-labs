@@ -1,8 +1,4 @@
 /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/ninja -G Ninja /Users/Rober/CLionProjects/labs
-CMake Error at CMakeLists.txt:6 (add_test):
-  add_test called with incorrect number of arguments
-
-
--- Configuring incomplete, errors occurred!
-See also "/Users/Rober/CLionProjects/labs/cmake-build-debug/CMakeFiles/CMakeOutput.log".
-See also "/Users/Rober/CLionProjects/labs/cmake-build-debug/CMakeFiles/CMakeError.log".
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/Rober/CLionProjects/labs/cmake-build-debug

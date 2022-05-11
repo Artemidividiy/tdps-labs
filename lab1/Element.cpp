@@ -43,11 +43,34 @@ std::string Element::to_string() {
     return "\nElement: \n name:" + name + "\n birth date" + birth_date + "\n group code: " + std::to_string(group_code);
 }
 
-bool Element::operator==(Element &element) {
-    if(name == element.name && birth_date == element.birth_date && group_code == element.group_code) return true;
-    return false;
-}
-
+//todo: finish explicit element destructor
 Element::~Element() {
 //    delete &name, &group_code, &birth_date;
 }
+
+bool Element::operator<(Element other) const {
+    if(name < other.name) return true;
+    return false;
+}
+
+bool Element::operator==(Element other) const {
+    return (name == other.name) && (group_code == other.group_code) && (birth_date == other.birth_date);
+}
+
+bool Element::operator==(Element *other) const {
+    return (name == other->name) && (group_code == other->group_code) && (birth_date == other->birth_date);
+}
+
+Element Element::MAX_SIZE() {
+    return Element("STRINGINF", "nan", INT32_MAX);
+}
+
+bool Element::operator>(Element other) const {
+    return name > other.name;
+}
+
+//template<class T>
+//bool Element::operator==(T other) const {
+//    Element element = static_cast<Element>(other);
+//    return (name == element.name) && (group_code == element.group_code) && (birth_date == element.birth_date);
+//}
