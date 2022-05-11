@@ -3,6 +3,8 @@
 #include "lab1/Table.h"
 #include "lab2/Drawer.h"
 
+#include "time.h"
+
 // main.cpp
 // Created by Артемий Касьяник on 10.04.2022.
 int main() {
@@ -33,7 +35,24 @@ int main() {
 //    table->sort();
 
 //    lab2
-    Drawer drawer = Drawer(10, 10);
-    drawer.draw();
+    clock_t start = clock();
+    Drawer drawer1 = Drawer(10000, 10000);
+    drawer1.draw();
+    clock_t stop = clock();
+    double elapsed = (double) (stop - start) / CLOCKS_PER_SEC;
+    printf("\n");
+    printf("Time elapsed: %f\n", elapsed);
+//    Drawer drawer2 = Drawer(5, 6);
+//    drawer2.draw();
+//    printf("\n");
+//    Drawer drawer3 = Drawer(1, 1);
+//    drawer3.draw();
+//    printf("\n");
+//    Drawer drawer4 = Drawer(3, 12);
+//    drawer4.draw();
+//    printf("\n");
+//    Drawer drawer5 = Drawer(8, 8);
+//    drawer5.draw();
+//    printf("\n");
     return 0;
 }
