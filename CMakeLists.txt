@@ -3,4 +3,4 @@ project(labs)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(labs main.cpp lab1/lab1.h lab1/lab1.cpp)
+add_executable(labs main.cpp lab1/Table.cpp lab1/Table.h lab1/Element.cpp lab1/Element.h lab2/Drawer.cpp lab2/Drawer.h)
