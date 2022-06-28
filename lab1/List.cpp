@@ -60,3 +60,26 @@ ListElement List::find(int index) {
         tmp = tmp->next;
     }
 }
+
+int List::length() {
+    return len;
+}
+
+void List::remove(const ListElement &element) {
+    ListElement *tmp = first;
+    while(tmp->next){
+        if (*tmp->next == element){
+            tmp->next = element.next;
+            len--;
+            return;
+        }
+    }
+}
+
+std::string List::to_string() {
+    ListElement *tmp = first;
+    std::string target = "";
+    while(tmp){
+        target += tmp->to_string();
+    }
+}

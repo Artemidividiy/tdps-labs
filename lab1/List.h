@@ -14,9 +14,10 @@ public:
     void add(ListElement *element);
     void remove(const ListElement &element);
     int find(const ListElement &element);
-    void remove(int index);
     ListElement find(int index);
+    void remove(int index);
     int length();
+    std::string to_string();
 private:
     ListElement* first;
     int len;

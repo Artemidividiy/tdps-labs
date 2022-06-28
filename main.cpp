@@ -37,4 +37,6 @@ int main() {
     list->add(el4);
     printf("index of searched element: %i\n",list->find(*el2));
     printf("searched by index element: %s\n",list->find(2).to_string().c_str());
+    list->remove(*el2);
+    std::cout << list->to_string();
 }
