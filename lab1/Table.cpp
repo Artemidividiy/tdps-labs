@@ -87,39 +87,53 @@ void Table::quadratic_sample() {
     fractioned_list.push_back(temp);
     fractioned_list[fractioned_list.size() - 1].pop_back(); // clear up empty element in the end
     std::vector<Element> mins;
-
+    //первичное заполнение массива минимальных элементов
     for (int i = 0; i < fractioned_list.size(); ++i) {
         Element min_element = *std::min_element(fractioned_list[i].begin(), fractioned_list[i].end(), element_comparison);
         mins.push_back(min_element);
 //        fractioned_list[segment][distance(fractioned_list[segment], min_element)] = Element::MAX_SIZE();
-        std::find(fractioned_list[i].begin(), fractioned_list[i].end(), min_element)->set_group_code(-1);
+//        std::find(fractioned_list[i].begin(), fractioned_list[i].end(), min_element)->set_group_code(-1);
     }
+    //создадим переменную номера сегмента fractured_list, из которой перенесли в target
     int segment = -1;
     while(target.size() != len) {
-//        for (int i = 0; i < fractioned_list.size(); ++i) {
-//            Element min_element = *std::min_element(fractioned_list[i].begin(), fractioned_list[i].end(), element_comparison);
-//            if (segment == i || segment == -1) {
-//                mins.push_back(min_element);
-//                fractioned_list[i].erase(std::find(fractioned_list[i].begin(), fractioned_list[i].end(), min_element));
-//            }
-//        }
-        if(segment != -1) {
-            Element min_element = *std::min_element(fractioned_list[segment].begin(), fractioned_list[segment].end(), element_comparison);
-
-            mins.push_back(min_element);
-            std::find(fractioned_list[segment].begin(), fractioned_list[segment].end(), min_element)->set_group_code(-1);
+        //ищем наименьший элемент в mins
+        Element min_element = mins[0];
+        int min_element_index = 0;
+        for (int i = 0; i < mins.size(); ++i) {
+            if (mins[i] < min_element) {
+                min_element = mins[i];
+                min_element_index = i;
+            }
         }
-        Element min_element_from_mins = *std::min_element(mins.begin(), mins.end(), element_comparison);
-        target.push_back(min_element_from_mins);
-        segment = distance(mins, min_element_from_mins);
-        std::erase(mins, min_element_from_mins);
+        //убрали из mins встраиваемый в target элемент
+        mins.erase(mins.begin() + min_element_index);
+        //делаем невозможный group code для элемента, чтобы не встраивать его в будущем
+        target.push_back(min_element);
+        for (int i = 0; i < fractioned_list[min_element_index].size(); ++i) {
+            if(fractioned_list[min_element_index][i] == min_element) {
+//                fractioned_list[min_element_index].erase(fractioned_list[min_element_index].begin() + i);
+                fractioned_list[min_element_index][i].set_name(set_max_name());
+                break;
+            }
+        }
+        if(fractioned_list[min_element_index].size() != 0)
+            mins.insert(mins.begin() + min_element_index,*std::min_element(fractioned_list[min_element_index].begin(), fractioned_list[min_element_index].end(), element_comparison));
     }
     list = target;
 }
 
 bool Table::element_comparison(Element left, Element right) {
-    if (left.get_group_code() != -1 || right.get_group_code() != -1) return false;
+//    if (left.get_group_code() == -1 || right.get_group_code() == -1) return true;
     return left < right;
+}
+
+std::string Table::set_max_name() {
+    std::string target = "";
+    for (int i = 0; i < 10000; ++i) {
+        target += 'z';
+    }
+    return target;
 }
 
 int Table::distance(std::vector<Element> arr, Element el){
@@ -162,6 +176,14 @@ void Table::sort() {
     if (list.size() >= 10000) {
         quick_sort(list, 0, list.size() - 1);
     }
+}
+
+std::string Table::to_string() {
+    std::string target = "";
+    for (int i = 0; i < list.size(); ++i) {
+        target += list[i].to_string() + "\n";
+    }
+    return target;
 }
 
 

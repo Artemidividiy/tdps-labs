@@ -20,16 +20,17 @@ public:
     size_t find(const Element &target);
     void remove(int index);
     void remove(Element& element);
+    std::string to_string();
 private:
     int len;
     std::vector<Element> list;
     void quadratic_sample();
-    void insertion_sort();
-
     void quick_sort(std::vector<Element> &arr, int left, int right);
     void swap(Element &left, Element &right);
     int distance(std::vector<Element> arr, Element el);
     static bool element_comparison(Element left, Element right);
+
+    std::string set_max_name();
 };
 
 
