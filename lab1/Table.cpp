@@ -11,20 +11,20 @@ Table::Table() : len(0) {
     std::cout << "empty table with no elements created\n";
 }
 
-Table::Table(Element& element, const int &length) :
+Table::Table(TableElement& element, const int &length) :
 len(length)
 {
     list.push_back(element);
     std::cout << "table with one element provided created\n";
 }
 
-Table::Table(std::vector<Element> &list) : len(list.size())
+Table::Table(std::vector<TableElement> &list) : len(list.size())
 {
     this->list = list;
     std::cout << "full table created\n";
 }
 
-void Table::change(int index, Element &element) {
+void Table::change(int index, TableElement &element) {
     list[index] = element;
 }
 
@@ -32,9 +32,9 @@ int Table::length() const {
     return len;
 }
 
-size_t Table::find(const Element& target) {
+size_t Table::find(const TableElement& target) {
     for (size_t i = 0; i < len; ++i) {
-        if(static_cast<Element>(target) == list[i]) return i;
+        if(static_cast<TableElement>(target) == list[i]) return i;
     }
     return -1;
 }
@@ -53,29 +53,24 @@ void Table::remove(int index) {
     len--;
 }
 
-void Table::remove(Element &element) {
+void Table::remove(TableElement &element) {
     int index = find(element);
     remove(index);
 }
 //todo: finish explicit table destructor
 Table::~Table() {
-//    for (size_t i = 0; i < len; ++i) {
-//        delete &list[i];
-//    }
-//    delete &len;
-//    delete &list;
 }
 
 
 void Table::quadratic_sample() {
-    //массив чисел, которые мы будем передавать в Table::list
-    std::vector<Element> target;
+    //массив чисел, который мы будем передавать по итогу в Table::list
+    std::vector<TableElement> target;
     //массив подмассивов Table::list
-    std::vector<std::vector<Element>> fractioned_list;
+    std::vector<std::vector<TableElement>> fractioned_list;
     size_t length = sqrt(len);
     if(length*length < len) length++;
     //генерируем массив подмассивов
-    std::vector<Element> temp;
+    std::vector<TableElement> temp;
     for (size_t i = 0; i <= len;++i) {
         if(i % length == 0) {
             if(temp.size())
@@ -87,17 +82,16 @@ void Table::quadratic_sample() {
 
     fractioned_list.push_back(temp);
     fractioned_list[fractioned_list.size() - 1].pop_back(); // clear up empty element in the end
-    std::vector<Element> mins;
+    std::vector<TableElement> mins;
     //первичное заполнение массива минимальных элементов
     for (int i = 0; i < fractioned_list.size(); ++i) {
-        Element min_element = *std::min_element(fractioned_list[i].begin(), fractioned_list[i].end(), element_comparison);
+        TableElement min_element = *std::min_element(fractioned_list[i].begin(), fractioned_list[i].end(), element_comparison);
         mins.push_back(min_element);
 
     }
-    //создадим переменную номера сегмента fractured_list, из которой перенесли в target
     while(target.size() != len) {
         //ищем наименьший элемент в mins
-        Element min_element = mins[0];
+        TableElement min_element = mins[0];
         int min_element_index = 0;
         for (int i = 0; i < mins.size(); ++i) {
             if (mins[i] < min_element) {
@@ -107,7 +101,8 @@ void Table::quadratic_sample() {
         }
         //убрали из mins встраиваемый в target элемент
         mins.erase(mins.begin() + min_element_index);
-        //делаем невозможный group code для элемента, чтобы не встраивать его в будущем
+        //делаем как можно большую длину имени, чтобы при сортировке уже вставленный в target элемент таблицы никогда
+        //не проходил по условию
         target.push_back(min_element);
         for (int i = 0; i < fractioned_list[min_element_index].size(); ++i) {
             if(fractioned_list[min_element_index][i] == min_element) {
@@ -121,8 +116,7 @@ void Table::quadratic_sample() {
     list = target;
 }
 
-bool Table::element_comparison(Element left, Element right) {
-//    if (left.get_group_code() == -1 || right.get_group_code() == -1) return true;
+bool Table::element_comparison(TableElement left, TableElement right) {
     return left < right;
 }
 
@@ -134,7 +128,7 @@ std::string Table::set_max_name() {
     return target;
 }
 
-int Table::distance(std::vector<Element> arr, Element el){
+int Table::distance(std::vector<TableElement> arr, TableElement el){
     int target = -1;
     for (int i = 0; i < arr.size(); ++i) {
         if (el == arr[i]) {
@@ -145,9 +139,9 @@ int Table::distance(std::vector<Element> arr, Element el){
     return target;
 }
 
-void Table::quick_sort(std::vector<Element> &arr, int left, int right) {
+void Table::quick_sort(std::vector<TableElement> &arr, int left, int right) {
     int i = left, j = right;
-    Element pivot = arr[(left + right) / 2];
+    TableElement pivot = arr[(left + right) / 2];
     while(i <= j){
         while(arr[i] < pivot) i++;
         while (arr[j] > pivot) j--;
@@ -160,8 +154,8 @@ void Table::quick_sort(std::vector<Element> &arr, int left, int right) {
     if (i < right) quick_sort(arr, i, right);
 }
 
-void Table::swap(Element &left, Element &right) {
-    Element tmp = left;
+void Table::swap(TableElement &left, TableElement &right) {
+    TableElement tmp = left;
     left = right;
     right = tmp;
 }

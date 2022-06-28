@@ -1,62 +1,40 @@
 #include <iostream>
-#include "lab1/Element.h"
+#include "lab1/TableElement.h"
 #include "lab1/Table.h"
 #include "lab2/Drawer.h"
 #include "lab3/Solution.h"
 
 #include "time.h"
+#include "lab1/List.h"
 
 // main.cpp
 // Created by Артемий Касьяник on 10.04.2022.
 int main() {
-    //lab1
-
-//    auto* el1 = new Table::Element(1,"xiv1","25:02:2002");
-//    auto* el2 = new Table::Element(1,"xiv2","25:02:2002");
-//    auto* table = new Table(*el1);
-//    table->add(el2);
-//    std::cout << table->length();
-//    std::cout << table->to_string();
-//    printf("find method with index provided: \n%s \n", table->find(1)->to_string().c_str());
-//    printf("find method with element provided: \n%i \n", table->find(el2));
+//    lab1 basic variant
+//    auto* el1 = new TableElement("A.S.1", "25:02:2002", 1);
+//    auto* el2 = new TableElement("A.S.2", "25:03:2002", 2);
+//    auto* el3 = new TableElement("A.S.3", "25:04:2002", 3);
+//    auto* el4 = new TableElement("A.S.4", "25:05:2002", 3);
+//    auto* el5 = new TableElement("A.S.5", "25:01:2002", 2);
+//    auto* el6 = new TableElement("A.S.6", "24:02:2002", 3);
+//    auto* el7 = new TableElement("A.S.7", "23:02:2002", 2);
+//    auto* el8 = new TableElement("A.S.8", "29:02:2001", 3);
+//    auto* el9 = new TableElement("A.S.9", "26:12:2002", 2);
+//    auto* el10 = new TableElement("A.S.10", "25:02:2002", 3);
+//    std::vector<TableElement> els = {*el1, *el2, *el3, *el2, *el4, *el5, *el6, *el7, *el8, *el9, *el10};
+//    auto* table = new Table(els);
 //    table->sort();
+//    std::cout << table->to_string();
 
-    auto* el1 = new Element("xiv1", "25:02:2002", 1);
-    auto* el2 = new Element("xiv2", "25:02:2002", 2);
-    auto* el3 = new Element("xiv3", "25:02:2002", 3);
-    auto* el4 = new Element("xiv4", "25:02:2002", 3);
-    auto* el5 = new Element("xiv5", "25:02:2002", 2);
-    auto* el6 = new Element("xiv6", "25:02:2002", 3);
-    auto* el7 = new Element("xiv7", "25:02:2002", 2);
-    auto* el8 = new Element("xiv8", "25:02:2002", 3);
-    auto* el9 = new Element("xiv9", "25:02:2002", 2);
-    auto* el10 = new Element("xiv10", "25:02:2002", 3);
-    std::vector<Element> els = {*el1, *el2, *el3, *el2, *el4, *el5, *el6, *el7, *el8, *el9, *el10};
-    auto* table = new Table(els);
-    table->sort();
-    std::cout << table->to_string();
-//    lab2
-//    clock_t start = clock();
-//    Drawer drawer1 = Drawer(10000, 10000);
-//    drawer1.draw();
-//    clock_t stop = clock();
-//    double elapsed = (double) (stop - start) / CLOCKS_PER_SEC;
-//    printf("\n");
-//    printf("Time elapsed: %f\n", elapsed);
-//    Drawer drawer2 = Drawer(5, 6);
-//    drawer2.draw();
-//    printf("\n");
-//    Drawer drawer3 = Drawer(1, 1);
-//    drawer3.draw();
-//    printf("\n");
-//    Drawer drawer4 = Drawer(3, 12);
-//    drawer4.draw();
-//    printf("\n");
-//    Drawer drawer5 = Drawer(8, 8);
-//    drawer5.draw();
-//    printf("\n");
-//    lab3
-//    Solution solution = Solution();
-//    std::cout << (solution.obey() ? "True" : "False");
-//    return 0;
+//    lab1 alternative variant
+    ListElement *el1 = new ListElement("asd", "12.12.2002", 3);
+    ListElement *el2 = new ListElement("bsd", "12.12.2002", 2);
+    ListElement *el3 = new ListElement("csd", "12.12.2002", 3);
+    ListElement *el4 = new ListElement("dsd", "12.12.2002", 1);
+    List *list = new List(el1);
+    list->add(el3);
+    list->add(el2);
+    list->add(el4);
+    printf("index of searched element: %i\n",list->find(*el2));
+    printf("searched by index element: %s\n",list->find(2).to_string().c_str());
 }

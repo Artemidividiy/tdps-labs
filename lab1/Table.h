@@ -1,34 +1,34 @@
 //
-// Created by Артемий Касьяник on 03.05.2022.
+// Created on 03.05.2022.
 //
 
 #ifndef LABS_TABLE_H
 #define LABS_TABLE_H
 
-#include "Element.h"
+#include "TableElement.h"
 #include <vector>
 
 class Table {
 public:
     Table();
-    Table(Element& element, const int &length);
-    Table(std::vector<Element>& list);
+    Table(TableElement& element, const int &length);
+    Table(std::vector<TableElement>& list);
     ~Table();
-    void change(int index, Element &element);
+    void change(int index, TableElement &element);
     void sort();
     int length() const;
-    size_t find(const Element &target);
+    size_t find(const TableElement &target);
     void remove(int index);
-    void remove(Element& element);
+    void remove(TableElement& element);
     std::string to_string();
 private:
     int len;
-    std::vector<Element> list;
+    std::vector<TableElement> list;
     void quadratic_sample();
-    void quick_sort(std::vector<Element> &arr, int left, int right);
-    void swap(Element &left, Element &right);
-    int distance(std::vector<Element> arr, Element el);
-    static bool element_comparison(Element left, Element right);
+    void quick_sort(std::vector<TableElement> &arr, int left, int right);
+    void swap(TableElement &left, TableElement &right);
+    int distance(std::vector<TableElement> arr, TableElement el);
+    static bool element_comparison(TableElement left, TableElement right);
 
     std::string set_max_name();
 };
