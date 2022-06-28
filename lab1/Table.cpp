@@ -67,15 +67,16 @@ Table::~Table() {
 }
 
 
-//TODO: debug and finish sort
 void Table::quadratic_sample() {
+    //массив чисел, которые мы будем передавать в Table::list
     std::vector<Element> target;
+    //массив подмассивов Table::list
     std::vector<std::vector<Element>> fractioned_list;
     size_t length = sqrt(len);
     if(length*length < len) length++;
+    //генерируем массив подмассивов
     std::vector<Element> temp;
     for (size_t i = 0; i <= len;++i) {
-//        std::cout << i % length + 1
         if(i % length == 0) {
             if(temp.size())
                 fractioned_list.push_back(temp);
@@ -91,11 +92,9 @@ void Table::quadratic_sample() {
     for (int i = 0; i < fractioned_list.size(); ++i) {
         Element min_element = *std::min_element(fractioned_list[i].begin(), fractioned_list[i].end(), element_comparison);
         mins.push_back(min_element);
-//        fractioned_list[segment][distance(fractioned_list[segment], min_element)] = Element::MAX_SIZE();
-//        std::find(fractioned_list[i].begin(), fractioned_list[i].end(), min_element)->set_group_code(-1);
+
     }
     //создадим переменную номера сегмента fractured_list, из которой перенесли в target
-    int segment = -1;
     while(target.size() != len) {
         //ищем наименьший элемент в mins
         Element min_element = mins[0];
@@ -112,7 +111,6 @@ void Table::quadratic_sample() {
         target.push_back(min_element);
         for (int i = 0; i < fractioned_list[min_element_index].size(); ++i) {
             if(fractioned_list[min_element_index][i] == min_element) {
-//                fractioned_list[min_element_index].erase(fractioned_list[min_element_index].begin() + i);
                 fractioned_list[min_element_index][i].set_name(set_max_name());
                 break;
             }
